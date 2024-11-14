@@ -1,102 +1,128 @@
-<h1>ExpNo 10 :Developing AI Agent with PEAS Description</h1>
-<h3>Name: Pavan Kishore.M</h3>
-<h3>Register Number: 212221230076</h3>
+# ExpNo:10 Implementation of Classical Planning Algorithm
+# Algorithm or Steps Involved:
+<ol>
+  <li>Define the initial state</li>
+  <li>Define the goal state</li>
+  <li>Define the actions</li>
+  <li>Find a <b>plan</b> to reach the goal state</li>
+  <li>Print the plan</li>
+</ol>
 
+# Example - 1
+```
+initial_state = {'A': 'Table', 'B': 'Table'}
+goal_state = {'A': 'B', 'B': 'Table'}
 
-<h3>AIM:</h3>
-<br>
-<p>To find the PEAS description for the given AI problem and develop an AI agent.</p>
-<br>
-<h3>Theory</h3>
-<h3>Medicine prescribing agent:</h3>
-<p>Such this agent prescribes medicine for fever (greater than 98.5 degrees) which we consider here as unhealthy, by the user temperature input, and another environment is rooms in the hospital (two rooms). This agent has to consider two factors one is room location and an unhealthy patient in a random room, the agent has to move from one room to another to check and treat the unhealthy person. The performance of the agent is calculated by incrementing performance and each time after treating in one room again it has to check another room so that the movement causes the agent to reduce its performance. Hence, agents prescribe medicine to unhealthy.</p>
-<hr>
-<h3>PEAS DESCRIPTION:</h3>
-<table>
-  <tr>
-    <td><strong>Agent Type</strong></td>
-    <td><strong>Performance</strong></td>
-     <td><strong>Environment</strong></td>
-    <td><strong>Actuators</strong></td>
-    <td><strong>Sensors</strong></td>
-  </tr>
-    <tr>
-    <td><strong>Medicine prescribing agent</strong></td>
-    <td><strong>Treating unhealthy, agent movement</strong></td>
-     <td><strong>Rooms, Patient</strong></td>
-    <td><strong>Medicine, Treatment</strong></td>
-    <td><strong>Location, Temperature of patient</strong></td>
-  </tr>
-</table>
-<hr>
-<H3>DESIGN STEPS</H3>
-<h3>STEP 1:Identifying the input:</h3>
-<p>Temperature from patients, Location.</p>
-<h3>STEP 2:Identifying the output:</h3>
-<p>Prescribe medicine if the patient in a random has a fever.</p>
-<h3>STEP 3:Developing the PEAS description:</h3>
-<p>PEAS description is developed by the performance, environment, actuators, and sensors in an agent.</p>
-<h3>STEP 4:Implementing the AI agent:</h3>
-<p>Treat unhealthy patients in each room. And check for the unhealthy patients in random room</p>
-<h3>STEP 5:</h3>
-<p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
+actions = {
+    'move_A_to_B': {'precondition': {'A': 'Table', 'B': 'Table'}, 'effect': {'A': 'B'}},
+    'move_B_to_Table': {'precondition': {'A': 'Table', 'B': 'B'}, 'effect': {'B': 'Table'}}
+}
 
-# PROGRAM:
+plan = find_plan(initial_state, goal_state, actions)
+print(plan)
+```
+# Output:
+```
+['move_A_to_B']
+```
+# Example - 2
+```
+initial_state = {'A': 'Table', 'B': 'Table', 'C': 'Table'}
+goal_state = {'A': 'B', 'B': 'C', 'C': 'Table'}
 
-```py
-import random
-class VacuumCleanerAgent:
-    def __init__(self): # Initialize the agent's state (location and dirt status)
-        self.location = "A"  # Initial location (can be "A" or "B")
-        self.dirt_status = {"A": True, "B": True}  # Initial dirt status (False means no dirt)
-        self.performance=0
-    def move_left(self): # Move the agent to the left if possible
-        if self.location == "B":
-            self.location = "A"
-    def move_right(self): # Move the agent to the right if possible
-        if self.location == "A":
-            self.location = "B"
-    def suck_dirt(self): # Suck dirt in the current location if there is dirt
-        if self.dirt_status[self.location]:
-            self.dirt_status[self.location] = False
-            print(f"Sucked dirt in location {self.location}")
-    def do_nothing(self): # Do nothing
-        pass
-    def perform_action(self, action): # Perform the specified action
-        if action == "left":
-            self.performance=self.performance-1
-            self.move_left()
-        elif action == "right":
-            self.performance=self.performance-1
-            self.move_right()
-        elif action == "suck":
-            self.performance=self.performance+10
-            self.suck_dirt()
-        elif action == "nothing":
-            self.do_nothing()
-        else:
-            print("Invalid action")
-    def print_status(self): # Print the current status of the agent
-        print(f"Location: {self.location}, Dirt Status: {self.dirt_status}, ",end="")
-        print(f"Perfomance Measure: {self.performance}")
-# Example usage:
-agent = VacuumCleanerAgent()
-# Move the agent, suck dirt, and do nothing
-agent.perform_action("left")
-agent.print_status()
-agent.perform_action("suck")
-agent.print_status()
-agent.perform_action("right")
-agent.print_status()
-agent.perform_action("suck")
-agent.print_status()
-agent.perform_action("nothing")
-agent.print_status()
+actions = {
+    'move_A_to_B': {'precondition': {'A': 'Table', 'B': 'Table'}, 'effect': {'A': 'B'}},
+    'move_B_to_C': {'precondition': {'A': 'B', 'B': 'Table', 'C': 'Table'}, 'effect': {'B': 'C'}},
+    'move_C_to_Table': {'precondition': {'A': 'B', 'B': 'C', 'C': 'C'}, 'effect': {'C': 'Table'}}
+}
+
+plan = find_plan(initial_state, goal_state, actions)
+print(plan)
+```
+# Output:
+```
+['move_A_to_B', 'move_B_to_C']
 ```
 
-# OUTPUT:
+### Program:
 
-![image](https://github.com/user-attachments/assets/488f12d0-f785-4c30-88c5-75b1dae61063)
+```
+Name: Vanitha S
+Register Number: 212222100057
+```
 
-# RESULT:
-The PEAS description for the given AI problem has been succesfully developed using an AI agent
+```
+def is_goal_state(current_state, goal_state):
+    return current_state == goal_state
+
+def apply_action(current_state, action_effect):
+    new_state = current_state.copy()
+    new_state.update(action_effect)
+    return new_state
+
+def find_plan(initial_state, goal_state, actions):
+    queue = [(initial_state, [])]
+    visited_states = set()
+
+    while queue:
+        current_state, partial_plan = queue.pop(0)
+
+        if is_goal_state(current_state, goal_state):
+            return partial_plan
+
+        if tuple(current_state.items()) in visited_states:
+            continue
+
+        visited_states.add(tuple(current_state.items()))
+
+        for action in actions:
+            if is_applicable(current_state, actions[action]['precondition']):
+                next_state = apply_action(current_state, actions[action]['effect'])
+                queue.append((next_state, partial_plan + [action]))
+
+    print("No plan exists.")
+    return None
+def is_applicable(current_state, precondition):
+    return all(current_state.get(key) == value for key, value in precondition.items())
+# Example
+initial_state = {'A': 'Table', 'B': 'Table'}
+goal_state = {'A': 'B', 'B': 'Table'}
+
+actions = {
+    'move_A_to_B': {'precondition': {'A': 'Table', 'B': 'Table'}, 'effect': {'A': 'B'}},
+    'move_B_to_Table': {'precondition': {'A': 'Table', 'B': 'B'}, 'effect': {'B': 'Table'}}
+}
+
+plan = find_plan(initial_state, goal_state, actions)
+print(plan)
+
+initial_state = {'A': 'Table', 'B': 'Table', 'C': 'Table'}
+goal_state = {'A': 'B', 'B': 'C', 'C': 'Table'}
+
+actions = {
+    'move_A_to_B': {'precondition': {'A': 'Table', 'B': 'Table'}, 'effect': {'A': 'B'}},
+    'move_B_to_C': {'precondition': {'A': 'B', 'B': 'Table', 'C': 'Table'}, 'effect': {'B': 'C'}},
+    'move_C_to_Table': {'precondition': {'A': 'B', 'B': 'C', 'C': 'C'}, 'effect': {'C': 'Table'}}
+}
+
+plan = find_plan(initial_state, goal_state, actions)
+print(plan)
+
+initial_state = {'A': 'Table', 'B': 'Table'}
+goal_state = {'A': 'Table', 'B': 'Table'}
+
+actions = {
+    'move_A_to_B': {'precondition': {'A': 'Table', 'B': 'Table'}, 'effect': {'A': 'B'}}
+}
+
+plan = find_plan(initial_state, goal_state, actions)
+print(plan)
+
+```
+### Output:
+
+![image](https://github.com/user-attachments/assets/5467a5d7-144b-4e3b-bdea-850180112934)
+
+### Result:
+Therefore,Implementation of Classical Planning Algorithm is implemetated successfully.
+

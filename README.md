@@ -47,8 +47,8 @@ print(plan)
 ### Program:
 
 ```
-Name: Vanitha S
-Register Number: 212222100057
+Name: Pavan Kishore.M
+Register Number: 212221230076
 ```
 
 ```
